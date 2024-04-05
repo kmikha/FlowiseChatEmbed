@@ -12,6 +12,7 @@ export type MessageRequest = {
     chatflowid?: string;
     apiHost?: string;
     body?: IncomingInput;
+    apiKey?: string;
 };
 export type FeedbackRatingType = 'THUMBS_UP' | 'THUMBS_DOWN';
 export type FeedbackInput = {
@@ -24,33 +25,35 @@ export type CreateFeedbackRequest = {
     chatflowid?: string;
     apiHost?: string;
     body?: FeedbackInput;
+    apiKey?: string;
 };
 export type UpdateFeedbackRequest = {
     id: string;
     apiHost?: string;
     body?: Partial<FeedbackInput>;
+    apiKey?: string;
 };
-export declare const sendFeedbackQuery: ({ chatflowid, apiHost, body }: CreateFeedbackRequest) => Promise<{
+export declare const sendFeedbackQuery: ({ chatflowid, apiHost, apiKey, body }: CreateFeedbackRequest) => Promise<{
     data?: unknown;
     error?: Error | undefined;
 }>;
-export declare const updateFeedbackQuery: ({ id, apiHost, body }: UpdateFeedbackRequest) => Promise<{
+export declare const updateFeedbackQuery: ({ id, apiHost, apiKey, body }: UpdateFeedbackRequest) => Promise<{
     data?: unknown;
     error?: Error | undefined;
 }>;
-export declare const sendMessageQuery: ({ chatflowid, apiHost, body }: MessageRequest) => Promise<{
+export declare const sendMessageQuery: ({ chatflowid, apiHost, apiKey, body }: MessageRequest) => Promise<{
     data?: any;
     error?: Error | undefined;
 }>;
-export declare const getChatbotConfig: ({ chatflowid, apiHost }: MessageRequest) => Promise<{
+export declare const getChatbotConfig: ({ chatflowid, apiHost, apiKey }: MessageRequest) => Promise<{
     data?: any;
     error?: Error | undefined;
 }>;
-export declare const isStreamAvailableQuery: ({ chatflowid, apiHost }: MessageRequest) => Promise<{
+export declare const isStreamAvailableQuery: ({ chatflowid, apiHost, apiKey }: MessageRequest) => Promise<{
     data?: any;
     error?: Error | undefined;
 }>;
-export declare const sendFileDownloadQuery: ({ apiHost, body }: MessageRequest) => Promise<{
+export declare const sendFileDownloadQuery: ({ apiHost, body, apiKey }: MessageRequest) => Promise<{
     data?: any;
     error?: Error | undefined;
 }>;

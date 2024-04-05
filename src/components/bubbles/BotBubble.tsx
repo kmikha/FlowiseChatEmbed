@@ -11,6 +11,7 @@ type Props = {
   chatflowid: string;
   chatId: string;
   apiHost?: string;
+  apiKey?: string;
   fileAnnotations?: any;
   showAvatar?: boolean;
   avatarSrc?: string;
@@ -36,6 +37,7 @@ export const BotBubble = (props: Props) => {
     try {
       const response = await sendFileDownloadQuery({
         apiHost: props.apiHost,
+        apiKey: props.apiKey,
         body: { question: '', history: [], fileName: fileAnnotation.fileName },
       });
       const blob = new Blob([response.data]);
@@ -72,6 +74,7 @@ export const BotBubble = (props: Props) => {
       const result = await sendFeedbackQuery({
         chatflowid: props.chatflowid,
         apiHost: props.apiHost,
+        apiKey: props.apiKey,
         body,
       });
 
@@ -98,6 +101,7 @@ export const BotBubble = (props: Props) => {
       const result = await sendFeedbackQuery({
         chatflowid: props.chatflowid,
         apiHost: props.apiHost,
+        apiKey: props.apiKey,
         body,
       });
 
@@ -119,6 +123,7 @@ export const BotBubble = (props: Props) => {
     const result = await updateFeedbackQuery({
       id: feedbackId(),
       apiHost: props.apiHost,
+      apiKey: props.apiKey,
       body,
     });
 

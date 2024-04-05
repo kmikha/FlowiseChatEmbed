@@ -15,6 +15,7 @@ export type MessageRequest = {
   chatflowid?: string;
   apiHost?: string;
   body?: IncomingInput;
+  apiKey?: string;
 };
 
 export type FeedbackRatingType = 'THUMBS_UP' | 'THUMBS_DOWN';
@@ -30,51 +31,59 @@ export type CreateFeedbackRequest = {
   chatflowid?: string;
   apiHost?: string;
   body?: FeedbackInput;
+  apiKey?: string;
 };
 
 export type UpdateFeedbackRequest = {
   id: string;
   apiHost?: string;
   body?: Partial<FeedbackInput>;
+  apiKey?: string;
 };
 
-export const sendFeedbackQuery = ({ chatflowid, apiHost = 'http://localhost:3000', body }: CreateFeedbackRequest) =>
+export const sendFeedbackQuery = ({ chatflowid, apiHost = 'http://localhost:3000', apiKey, body }: CreateFeedbackRequest) =>
   sendRequest({
     method: 'POST',
     url: `${apiHost}/api/v1/feedback/${chatflowid}`,
     body,
+    apiKey,
   });
 
-export const updateFeedbackQuery = ({ id, apiHost = 'http://localhost:3000', body }: UpdateFeedbackRequest) =>
+export const updateFeedbackQuery = ({ id, apiHost = 'http://localhost:3000', apiKey, body }: UpdateFeedbackRequest) =>
   sendRequest({
     method: 'PUT',
     url: `${apiHost}/api/v1/feedback/${id}`,
     body,
+    apiKey,
   });
 
-export const sendMessageQuery = ({ chatflowid, apiHost = 'http://localhost:3000', body }: MessageRequest) =>
+export const sendMessageQuery = ({ chatflowid, apiHost = 'http://localhost:3000', apiKey, body }: MessageRequest) =>
   sendRequest<any>({
     method: 'POST',
     url: `${apiHost}/api/v1/prediction/${chatflowid}`,
     body,
+    apiKey,
   });
 
-export const getChatbotConfig = ({ chatflowid, apiHost = 'http://localhost:3000' }: MessageRequest) =>
+export const getChatbotConfig = ({ chatflowid, apiHost = 'http://localhost:3000', apiKey }: MessageRequest) =>
   sendRequest<any>({
     method: 'GET',
     url: `${apiHost}/api/v1/public-chatbotConfig/${chatflowid}`,
+    apiKey,
   });
 
-export const isStreamAvailableQuery = ({ chatflowid, apiHost = 'http://localhost:3000' }: MessageRequest) =>
+export const isStreamAvailableQuery = ({ chatflowid, apiHost = 'http://localhost:3000', apiKey }: MessageRequest) =>
   sendRequest<any>({
     method: 'GET',
     url: `${apiHost}/api/v1/chatflows-streaming/${chatflowid}`,
+    apiKey,
   });
 
-export const sendFileDownloadQuery = ({ apiHost = 'http://localhost:3000', body }: MessageRequest) =>
+export const sendFileDownloadQuery = ({ apiHost = 'http://localhost:3000', body, apiKey }: MessageRequest) =>
   sendRequest<any>({
     method: 'POST',
     url: `${apiHost}/api/v1/openai-assistants-file`,
     body,
     type: 'blob',
+    apiKey,
   });

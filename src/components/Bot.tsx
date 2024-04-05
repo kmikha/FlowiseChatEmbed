@@ -61,6 +61,7 @@ export type observersConfigType = Record<'observeUserInput' | 'observeLoading' |
 export type BotProps = {
   chatflowid: string;
   apiHost?: string;
+  apiKey?: string;
   chatflowConfig?: Record<string, unknown>;
   welcomeMessage?: string;
   botMessage?: BotMessageTheme;
@@ -341,6 +342,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     const result = await sendMessageQuery({
       chatflowid: props.chatflowid,
       apiHost: props.apiHost,
+      apiKey: props.apiKey,
       body,
     });
 
@@ -451,6 +453,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     const { data } = await isStreamAvailableQuery({
       chatflowid: props.chatflowid,
       apiHost: props.apiHost,
+      apiKey: props.apiKey,
     });
 
     if (data) {
@@ -461,6 +464,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     const result = await getChatbotConfig({
       chatflowid: props.chatflowid,
       apiHost: props.apiHost,
+      apiKey: props.apiKey,
     });
 
     if (result.data) {
@@ -816,6 +820,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
                       <GuestBubble
                         message={message}
                         apiHost={props.apiHost}
+                        apiKey={props.apiKey}
                         chatflowid={props.chatflowid}
                         chatId={chatId()}
                         backgroundColor={props.userMessage?.backgroundColor}
@@ -832,6 +837,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
                         chatflowid={props.chatflowid}
                         chatId={chatId()}
                         apiHost={props.apiHost}
+                        apiKey={props.apiKey}
                         backgroundColor={props.botMessage?.backgroundColor}
                         textColor={props.botMessage?.textColor}
                         showAvatar={props.botMessage?.showAvatar}

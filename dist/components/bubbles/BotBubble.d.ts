@@ -4,6 +4,7 @@ type Props = {
     chatflowid: string;
     chatId: string;
     apiHost?: string;
+    apiKey?: string;
     fileAnnotations?: any;
     showAvatar?: boolean;
     avatarSrc?: string;

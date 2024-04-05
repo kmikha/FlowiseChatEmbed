@@ -13,6 +13,7 @@ export const sendRequest = async <ResponseData>(
         method: string;
         body?: Record<string, unknown> | FormData;
         type?: string;
+        apiKey?: string;
       }
     | string,
 ): Promise<{ data?: ResponseData; error?: Error }> => {
@@ -25,6 +26,7 @@ export const sendRequest = async <ResponseData>(
         typeof params !== 'string' && isDefined(params.body)
           ? {
               'Content-Type': 'application/json',
+              'Authorization': params.apiKey ? params.apiKey : '',
             }
           : undefined,
       body: typeof params !== 'string' && isDefined(params.body) ? JSON.stringify(params.body) : undefined,
