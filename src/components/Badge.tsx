@@ -44,7 +44,7 @@ export const Badge = (props: Props) => {
         'background-color': props.badgeBackgroundColor ?? '#ffffff',
       }}
     >
-      {/* Powered by
+      Powered by
       <a
         ref={liteBadge}
         href={'https://ai-automations.tech'}
@@ -55,7 +55,7 @@ export const Badge = (props: Props) => {
         style={{ 'font-weight': 'bold', color: props.poweredByTextColor ?? defaultTextColor }}
       >
         <span> AI Automations</span>
-      </a> */}
+      </a>
     </span>
   );
 };
